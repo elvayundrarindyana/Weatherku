@@ -1,0 +1,110 @@
+/*
+ * Copyright (C) 2019 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.android.systemui.bubbles.animation;
+
+import android.content.res.Resources;
+import android.graphics.PointF;
+import android.graphics.RectF;
+import android.util.Log;
+import android.view.View;
+import android.view.WindowInsets;
+
+import androidx.dynamicanimation.animation.DynamicAnimation;
+import androidx.dynamicanimation.animation.FlingAnimation;
+import androidx.dynamicanimation.animation.FloatPropertyCompat;
+import androidx.dynamicanimation.animation.SpringAnimation;
+import androidx.dynamicanimation.animation.SpringForce;
+
+import com.android.systemui.R;
+
+import com.google.android.collect.Sets;
+
+import java.util.HashMap;
+import java.util.Set;
+
+/**
+ * Animation controller for bubbles when they're in their stacked state. Stacked bubbles sit atop
+ * each other with a slight offset to the left or right (depending on which side of the screen they
+ * are on). Bubbles 'follow' each other when dragged, and can be flung to the left or right sides of
+ * the screen.
+ */
+public class StackAnimationController extends
+        PhysicsAnimationLayout.PhysicsAnimationController {
+
+    private static final String TAG = "Bubbs.StackCtrl";
+
+    /** Scale factor to use initially for new bubbles being animated in. */
+    private static final float ANIMATE_IN_STARTING_SCALE = 1.15f;
+
+    /** Translation factor (multiplied by stack offset) to use for bubbles being animated in/out. */
+    private static final int ANIMATE_TRANSLATION_FACTOR = 4;
+
+    /**
+     * Values to use for the default {@link SpringForce} provided to the physics animation layout.
+     */
+    private static final int DEFAULT_STIFFNESS = 12000;
+    private static final int FLING_FOLLOW_STIFFNESS = 20000;
+    private static final float DEFAULT_BOUNCINESS = 0.9f;
+
+    /**
+     * Friction applied to fling animations. Since the stack must land on one of the sides of the
+     * screen, we want less friction horizontally so that the stack has a better chance of making it
+     * to the side without needing a spring.
+     */
+    private static final float FLING_FRICTION_X = 2.2f;
+    private static final float FLING_FRICTION_Y = 2.2f;
+
+    /**
+     * Values to use for the stack spring animation used to spring the stack to its final position
+     * after a fling.
+     */
+    private static final int SPRING_AFTER_FLING_STIFFNESS = 750;
+    private static final float SPRING_AFTER_FLING_DAMPING_RATIO = 0.85f;
+
+    /**
+     * Minimum fling velocity required to trigger moving the stack from one side of the screen to
+     * the other.
+     */
+    private static final float ESCAPE_VELOCITY = 750f;
+
+    /**
+     * The canonical position of the stack. This is typically the position of the first bubble, but
+     * we need to keep track of it separately from the first bubble's translation in case there are
+     * no bubbles, or the first bubble was just added and being animated to its new position.
+     */
+    private PointF mStackPosition = new PointF(-1, -1);
+
+    /** Whether or not the stack's start position has been set. */
+    private boolean mStackMovedToStartPosition = false;
+
+    /** The most recent position in which the stack was resting on the edge of the screen. */
+    private PointF mRestingStackPosition;
+
+    /** The height of the most recently visible IME. */
+    private float mImeHeight = 0f;
+
+    /**
+     * The Y position of the stack before the IME became visible, or {@link Float#MIN_VALUE} if the
+     * IME is not visible or the user moved the stack since the IME became visible.
+     */
+    private float mPreImeY = Float.MIN_VALUE;
+
+    /**
+     * Animations on the stack position itself, which would have been started in
+     * {@link #flingThenSpringFirstBubbleWithStackFollowing}. These animations dispatch to
+     * {@link #moveFirstBubbleWithStackFollowing} to move the entire stack (with 'following' effect)
+     * to a legal position on the side of
