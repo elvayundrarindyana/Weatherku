@@ -30,6 +30,7 @@ dependencies {
     implementation 'com.github.androdocs:Simple-HTTP-Request:v1.0'
     implementation 'com.github.robinkrsingh:easylocation:0.1.0'
     implementation 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
 
 

@@ -823,9 +823,11 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable forecast
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable humidity
+drawable ic_forecast
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable info
@@ -977,6 +979,7 @@ id errorText
 id expand_activities_button
 id expanded_menu
 id flip
+id forecast
 id forever
 id gone
 id graph

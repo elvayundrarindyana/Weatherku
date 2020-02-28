@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.androdocs.httprequest.HttpRequest;
 import com.robin.locationgetter.EasyLocation;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     TextView addressTxt, updated_atTxt, statusTxt, tempTxt, temp_minTxt, temp_maxTxt, sunriseTxt,
             sunsetTxt, windTxt, pressureTxt, humidityTxt;
     EditText cityTxt;
+    ImageView forecast;
     Button searchBtn;
     Double lat;
     Double lon;
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         humidityTxt = findViewById(R.id.humidity);
         cityTxt = findViewById(R.id.txtCity);
         searchBtn = findViewById(R.id.btnSearch);
+        forecast = findViewById(R.id.forecast);
 
         new EasyLocation(MainActivity.this, new EasyLocation.EasyLocationCallBack() {
             @Override
@@ -181,6 +185,11 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject sys = jsonObj.getJSONObject("sys");
                 JSONObject wind = jsonObj.getJSONObject("wind");
                 JSONObject weather = jsonObj.getJSONArray("weather").getJSONObject(0);
+
+
+
+                String image = "http://openweathermap.org/img/wn/"+"@2x.png";
+                Picasso.get().load(image).into(forecast);
 
                 Long updatedAt = jsonObj.getLong("dt");
                 String updatedAtText = "Updated at: " + new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(new Date(updatedAt * 1000));

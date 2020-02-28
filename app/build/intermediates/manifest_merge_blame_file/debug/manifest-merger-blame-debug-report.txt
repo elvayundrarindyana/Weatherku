@@ -21,7 +21,7 @@
 13-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:7:22-64
 14
 15    <application
-15-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:9:5-28:19
+15-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:9:5-33:19
 16        android:allowBackup="true"
 16-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:10:9-35
 17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -38,53 +38,72 @@
 23        android:testOnly="true"
 24        android:theme="@style/AppTheme" >
 24-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:15:9-40
-25        <meta-data
-25-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:16:9-74
-26            android:name="AA_DB_NAME"
-26-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:16:20-45
-27            android:value="Weatherku" />
-27-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:16:46-71
-28        <meta-data
-28-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:17:9-69
-29            android:name="AA_DB_VERSION"
-29-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:17:20-48
-30            android:value="5" />
-30-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:17:49-66
-31
-32        <activity
-32-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:18:9-27:20
-33            android:name="com.elvayundra.weatherku.MainActivity"
-33-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:19:13-41
-34            android:screenOrientation="portrait"
-34-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:20:13-49
-35            android:theme="@style/CustomTheme" >
-35-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:21:13-47
-36            <intent-filter>
-36-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:22:13-26:29
-37                <action android:name="android.intent.action.MAIN" />
-37-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:23:17-69
-37-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:23:25-66
-38
-39                <category android:name="android.intent.category.LAUNCHER" />
-39-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:25:17-77
-39-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:25:27-74
-40            </intent-filter>
-41        </activity>
-42        <activity
-42-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e91790921c910b5c0de2045e813ad59c\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
-43            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-43-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e91790921c910b5c0de2045e813ad59c\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
-44            android:exported="false"
-44-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e91790921c910b5c0de2045e813ad59c\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
-45            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-45-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e91790921c910b5c0de2045e813ad59c\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
-46
-47        <meta-data
-47-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\c10e03bf53d4857a83eef293df9690e6\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
-48            android:name="com.google.android.gms.version"
-48-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\c10e03bf53d4857a83eef293df9690e6\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
-49            android:value="@integer/google_play_services_version" />
-49-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\c10e03bf53d4857a83eef293df9690e6\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
-50    </application>
-51
-52</manifest>
+25        <provider
+25-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:17:9-20:40
+26            android:name="com.elvayundra.weatherku.DatabaseWeather"
+26-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:18:13-44
+27            android:authorities="com.elvayundra.weatherku"
+27-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:19:13-59
+28            android:exported="false" />
+28-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:20:13-37
+29
+30        <meta-data
+30-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:21:9-74
+31            android:name="AA_DB_NAME"
+31-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:21:20-45
+32            android:value="Weatherku" />
+32-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:21:46-71
+33        <meta-data
+33-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:22:9-69
+34            android:name="AA_DB_VERSION"
+34-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:22:20-48
+35            android:value="5" />
+35-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:22:49-66
+36
+37        <activity
+37-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:23:9-32:20
+38            android:name="com.elvayundra.weatherku.MainActivity"
+38-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:24:13-41
+39            android:screenOrientation="portrait"
+39-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:25:13-49
+40            android:theme="@style/CustomTheme" >
+40-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:26:13-47
+41            <intent-filter>
+41-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:27:13-31:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:28:17-69
+42-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:28:25-66
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:30:17-77
+44-->D:\APLIKASI WEATHER\app\src\main\AndroidManifest.xml:30:27-74
+45            </intent-filter>
+46        </activity>
+47
+48        <provider
+48-->[com.squareup.picasso:picasso:2.71828] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\c36417d8bb910228be54ca0dd79033b2\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+49            android:name="com.squareup.picasso.PicassoProvider"
+49-->[com.squareup.picasso:picasso:2.71828] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\c36417d8bb910228be54ca0dd79033b2\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+50            android:authorities="com.elvayundra.weatherku.com.squareup.picasso"
+50-->[com.squareup.picasso:picasso:2.71828] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\c36417d8bb910228be54ca0dd79033b2\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+51            android:exported="false" />
+51-->[com.squareup.picasso:picasso:2.71828] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\c36417d8bb910228be54ca0dd79033b2\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+52
+53        <activity
+53-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e91790921c910b5c0de2045e813ad59c\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+54            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+54-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e91790921c910b5c0de2045e813ad59c\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+55            android:exported="false"
+55-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e91790921c910b5c0de2045e813ad59c\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+56            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+56-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\e91790921c910b5c0de2045e813ad59c\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+57
+58        <meta-data
+58-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\c10e03bf53d4857a83eef293df9690e6\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+59            android:name="com.google.android.gms.version"
+59-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\c10e03bf53d4857a83eef293df9690e6\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+60            android:value="@integer/google_play_services_version" />
+60-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\USER\.gradle\caches\transforms-2\files-2.1\c10e03bf53d4857a83eef293df9690e6\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+61    </application>
+62
+63</manifest>
